@@ -1,0 +1,7 @@
+.vagrant
+frontend
+go-api
+node-api
+php
+python-api
+*.log
