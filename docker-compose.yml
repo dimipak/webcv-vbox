@@ -1,26 +1,13 @@
 version: "3"
 
 services:
-  vue:
-    container_name: frontend
-    image: ebiven/vue-cli
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./frontend:/code
-    command: bash -c "npm install && npm run serve"
-    environment:
-      - CHOKIDAR_USEPOLLING=true
   node:
     container_name: nodeAPI
     image: node:latest
 #    env_file:
 #      - .env.development
-    depends_on:
-      - "database"
     ports:
       - "4000:4000"
-      - "50051:50051"
     expose:
       - 4000
     working_dir: /home/node/app
@@ -39,36 +26,9 @@ services:
       MYSQL_DATABASE: "dimipak"
       MYSQL_USER: "mydimi"
       MYSQL_PASSWORD: "mypass"
-#  python:
-#    container_name: pythonAPI
-#    image: python:latest
-#    depends_on:
-#      - "database"
-#    working_dir: /usr/src/app
-#    command: bash -c "pip install flask mysql-connector-python && python ./server.py"
-#    expose:
-#      - 5000
-#    ports:
-#    - "5000:5000"
-#    volumes:
-#      - ./python-api:/usr/src/app
-#  go:
-#    container_name: goAPI
-#    image: golang:latest
-#    working_dir: /go/src/app
-#    command: bash -c "go get github.com/go-sql-driver/mysql && go run ./main.go"
-#    expose:
-#      - 10000
-#    ports:
-#      - "10000:10000"
-#    volumes:
-#      - ./go-api:/go/src/app
   nginx:
     container_name: nginx
     image: nginx:latest
-    expose:
-      - 80
-      - 443
     ports:
       - "80:80"
       - "443:443"
@@ -77,13 +37,3 @@ services:
       - ./services/ssl:/etc/ssl/certs/dimipak
     links:
       - node
-#  php:
-#    container_name: php
-#    image: php:7.4-fpm
-#    expose:
-#      - 9000
-#    volumes:
-#      - ./php:/var/www/html
-#      - ./services/php/php.ini:/usr/local/etc/php/conf.d/php.ini
-#    links:
-#      - database

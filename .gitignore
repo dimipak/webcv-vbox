@@ -5,3 +5,4 @@ node-api
 php
 python-api
 *.log
+services/ssl/
