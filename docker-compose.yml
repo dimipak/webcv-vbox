@@ -12,7 +12,7 @@ services:
       - 4000
     working_dir: /home/node/app
     volumes:
-      - ./node-api:/home/node/app
+      - ./src/node-api:/home/node/app
     command: bash -c "npm install && npm run dev"
   database:
     container_name: db
@@ -34,6 +34,6 @@ services:
       - "443:443"
     volumes:
       - ./services/nginx/nodeAPI.conf:/etc/nginx/conf.d/default.conf
-      - ./services/ssl:/etc/ssl/certs/dimipak
+      - ./keys/ssl:/etc/ssl/certs/dimipak
     links:
       - node

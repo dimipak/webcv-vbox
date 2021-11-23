@@ -36,7 +36,11 @@ Vagrant.configure("2") do |config|
       pr.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
-    box.vm.provision "shell", path: "scripts/vagrant/initial.sh"
+    box.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+    SHELL
+
+    box.vm.provision "shell", path: "scripts/set_certificates.sh"
 
     box.vm.provision :docker
     box.vm.provision :docker_compose, yml: "/vagrant/docker-compose.yml", run: "always"

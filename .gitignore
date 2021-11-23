@@ -8,3 +8,4 @@ python-api
 services/ssl/*
 src/*
 keys/*
+.idea/*
