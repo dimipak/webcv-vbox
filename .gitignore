@@ -6,3 +6,5 @@ php
 python-api
 *.log
 services/ssl/*
+src/*
+keys/*
