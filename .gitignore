@@ -9,3 +9,5 @@ services/ssl/*
 src/*
 keys/*
 .idea/*
+production
+.DS_Store
