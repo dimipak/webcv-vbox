@@ -23,11 +23,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "bento/ubuntu-18.04"
   config.vm.box_check_update = false
+  config.vagrant.plugins = ['vagrant-vbguest']
   config.vm.define :webcv do |box|
     box.vm.hostname = 'webcv'
     box.vm.network "private_network", ip: "192.168.4.10"
 
-    box.vm.synced_folder ".", "/vagrant", id: "v-root", mount_options: ["rw", "tcp", "nolock", "noacl", "async"], type: "nfs", nfs_udp: false
+    box.vm.synced_folder ".", "/vagrant", mount_options: ["rw", "tcp", "nolock", "noacl", "async"], type: "nfs", nfs_udp: false
 
     box.vm.provider :virtualbox do |pr|
       pr.cpus = 2

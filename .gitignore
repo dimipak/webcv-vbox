@@ -11,3 +11,4 @@ keys/*
 .idea/*
 production
 .DS_Store
+.env.development
